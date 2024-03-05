@@ -82,6 +82,56 @@ resource "aws_kms_key_policy" "pass2" {
   })
 }
 
+resource "aws_kms_key" "pass3" {
+  description                        = "pass3"
+  deletion_window_in_days            = 7
+  key_usage                          = "ENCRYPT_DECRYPT"
+  customer_master_key_spec           = "SYMMETRIC_DEFAULT"
+  policy                             = <<POLICY
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "pass3",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": [
+              "kms:Update*",
+              "kms:UntagResource",
+              "kms:TagResource",
+              "kms:SynchronizeMultiRegionKey",
+              "kms:ScheduleKeyDeletion",
+              "kms:ReplicateKey",
+              "kms:PutKeyPolicy",
+              "kms:List*",
+              "kms:Get*",
+              "kms:Enable*",
+              "kms:Disable*",
+              "kms:Describe*",
+              "kms:DeleteAlias",
+              "kms:CreateAlias",
+              "kms:CancelKeyDeletion"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:PrincipalArn": [
+                        "${data.aws_iam_session_context.current.issuer_arn}"
+                    ]
+                }
+            }
+        }
+    ]
+}
+POLICY
+  bypass_policy_lockout_safety_check = false
+  is_enabled                         = false
+  enable_key_rotation                = true
+
+}
+
 data "aws_iam_policy_document" "fail1" {
 
   statement {
