@@ -1,3 +1,1 @@
-| Checkov Expected Pass | Checkov Actual Pass | Checkov Expected Failure | Checkov Actual Failure |
-|-----------------------|---------------------|--------------------------|------------------------|
-| 6                     | 60                  | 8                        | 20                     |
+[<img src="./images/checkov_piechart.png">](https://github.com/Michael-McClelland/ramshackle/blob/main/images/checkov_piechart.png)
