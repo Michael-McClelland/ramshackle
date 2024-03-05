@@ -55,10 +55,11 @@ jobs:
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
         with:
+          #quiet: true
           soft_fail: true
           framework: terraform
-          output_format: cli,sarif
-          output_file_path: console,results.sarif
+          output_format: json
+          output_file_path: results.json
 
       - name: Scoring
         run: |
@@ -72,6 +73,6 @@ jobs:
           git config --global user.name "Michael-McClelland"
           git config --global user.email "mikemcclelland@gmail.com"
           git add README.md
-          git add results.sarif
+          git add results.json
           git commit -m "scoring step"
           git push
