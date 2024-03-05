@@ -72,5 +72,6 @@ jobs:
           git config --global user.name "Michael-McClelland"
           git config --global user.email "mikemcclelland@gmail.com"
           git add README.md
+          git add results.sarif
           git commit -m "scoring step"
           git push
