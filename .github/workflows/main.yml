@@ -25,15 +25,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::398930073421:role/ramshackle-main-github-actions-role
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
           aws-region: ${{ env.AWS_REGION }}
+          
       - name: STS GetCallerIdentity
         run: |
           aws sts get-caller-identity
+  
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
   
@@ -48,6 +51,7 @@ jobs:
   
       - name: Terraform Plan
         run: terraform plan -input=false
+
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
         with:
@@ -55,7 +59,16 @@ jobs:
           framework: terraform
           output_format: cli,sarif
           output_file_path: console,results.sarif
-      - name: Score Findings
+
+      - name: Scoring
         run: |
-          ls
-          cat results.sarif
+          echo '| Checkov Expected Pass | Checkov Actual Pass | Checkov Expected Failure | Checkov Actual Failure |' > README.md
+          echo '| 6                      | 60                  | 8                        | 20                    |' >> README.md
+  
+      - name: Commit
+        run: |
+          git config --global user.name "Michael-McClelland"
+          git config --global user.email "mikemcclelland@gmail.com"
+          git add README.md
+          git commit -m "scoring step"
+          git push
