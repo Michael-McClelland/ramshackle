@@ -62,8 +62,10 @@ jobs:
 
       - name: Scoring
         run: |
-          echo '| Checkov Expected Pass | Checkov Actual Pass | Checkov Expected Failure | Checkov Actual Failure |' > README.md
-          echo '| 6                      | 60                  | 8                        | 20                    |' >> README.md
+          rm README.md
+          echo '| Checkov Expected Pass | Checkov Actual Pass | Checkov Expected Failure | Checkov Actual Failure |' >> README.md
+          echo '|-----------------------|---------------------|--------------------------|------------------------|' >> README.md
+          echo '| 6                     | 60                  | 8                        | 20                     |' >> README.md
   
       - name: Commit
         run: |
