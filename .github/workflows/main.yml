@@ -63,16 +63,11 @@ jobs:
 
       - name: Scoring
         run: |
-          rm README.md
-          echo '| Checkov Expected Pass | Checkov Actual Pass | Checkov Expected Failure | Checkov Actual Failure |' >> README.md
-          echo '|-----------------------|---------------------|--------------------------|------------------------|' >> README.md
-          echo '| 6                     | 60                  | 8                        | 20                     |' >> README.md
-  
+          python3 ./scripts/checkov_scoring.py
       - name: Commit
         run: |
           git config --global user.name "Michael-McClelland"
           git config --global user.email "mikemcclelland@gmail.com"
-          git add README.md
-          git add results
+          git add ./images/checkov_piechart.png
           git commit -m "scoring step"
           git push
