@@ -61,15 +61,15 @@ resource "aws_kms_key_policy" "pass2" {
   key_id = aws_kms_key.pass2.id
   policy = jsonencode({
     Version = "2012-10-17"
-    Id = "pass2"
+    Id      = "pass2"
     Statement = [
       {
-        Sid      = "pass2"
+        Sid = "pass2"
         Principal = {
           AWS = "*"
         }
-        Effect = "Allow"
-        Action = "kms:*"
+        Effect   = "Allow"
+        Action   = "kms:*"
         Resource = "*"
         "Condition" : {
           "StringEquals" : {
