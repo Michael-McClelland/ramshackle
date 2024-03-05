@@ -53,3 +53,7 @@ jobs:
         with:
           output_format: cli,sarif
           output_file_path: console,results.sarif
+      - name: Score Findings
+        run: |
+          ls
+          cat results.sarif
