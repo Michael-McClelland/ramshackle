@@ -59,7 +59,7 @@ jobs:
           soft_fail: true
           framework: terraform
           output_format: json
-          output_file_path: results.json
+          output_file_path: results
 
       - name: Scoring
         run: |
@@ -73,6 +73,6 @@ jobs:
           git config --global user.name "Michael-McClelland"
           git config --global user.email "mikemcclelland@gmail.com"
           git add README.md
-          git add results.json
+          git add results
           git commit -m "scoring step"
           git push
