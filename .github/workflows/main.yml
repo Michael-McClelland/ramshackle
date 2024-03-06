@@ -71,6 +71,9 @@ jobs:
       - name: Scoring
         run: |
           python3 ./scripts/checkov_scoring.py
+          pwd
+          ls
+          ls -lah ./images/
       - name: Commit
         run: |
           git config --global user.name "Michael-McClelland"

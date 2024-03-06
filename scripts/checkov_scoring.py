@@ -8,14 +8,8 @@ actual_failures = 0
 expected_passes = 9
 actual_passes = 0
 for i in data['results']['passed_checks']:
-  print(i['check_id'])
-  print(i['check_result']['result'])
-  print(i['resource'])
   actual_passes = actual_passes + 1
 for i in data['results']['failed_checks']:
-  print(i['check_id'])
-  print(i['check_result']['result'])
-  print(i['resource'])
   actual_failures = actual_failures + 1
 f.close()
 
@@ -28,4 +22,3 @@ ax.pie(sizes, labels=labels, autopct='%1.1f%%')
 if not os.path.exists(os.getcwd() + '/images'):
   os.makedirs('./images')
 fig.savefig(os.getcwd() + "/images/checkov_piechart.png")
-plt.show()
