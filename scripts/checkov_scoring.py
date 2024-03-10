@@ -7,6 +7,8 @@ expected_failures = 8
 actual_failures = 0
 expected_passes = 9
 actual_passes = 0
+
+
 for i in data['results']['passed_checks']:
   actual_passes = actual_passes + 1
 for i in data['results']['failed_checks']:
