@@ -68,6 +68,7 @@ jobs:
 
       - name: Scoring
         run: |
+          rm ./images/checkov_piechart.png
           python3 ./scripts/checkov_scoring.py
           pwd
           ls
